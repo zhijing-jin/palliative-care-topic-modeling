@@ -1,6 +1,15 @@
 # reference: https://github.com/titipata/scipdf_parser
 from efficiency.log import show_var
 
+def get_args():
+    import argparse
+    parser = argparse.ArgumentParser('Parameters for topic modeling on journal articles')
+    parser.add_argument('-journal_name', default='jpm', choices=['jpm', 'jwh'], help='Input a journal name: either "jpm" or "jwh".')
+    args = parser.parse_args()
+    return args
+
+args = get_args()
+journal_name = args.journal_name
 
 class Constants:
     # journal_name = 'jpm'
@@ -199,18 +208,13 @@ class PaperAnalyzer:
     def txt2word_clouds(self):
         # reference: https://www.jasondavies.com/wordcloud/
         pass
-def get_args():
-    import argparse
-    parser = argparse.ArgumentParser('Parameters for topic modeling on journal articles')
-    parser.add_argument('-journal_name', default='jpm', choices=['jpm', 'jwh'], help='Input a journal name: either "jpm" or "jwh".')
-    args = parser.parse_args()
-    return args
 
 if __name__ == '__main__':
-    args = get_args()
-    journal_name = args.journal_name
+    from efficiency.function import set_seed
+    set_seed()
 
     C = Constants()
+    print('[Info] Journal name:', journal_name)
     p2j = PaperAnalyzer()
     # p2j.pdf2json()
     p2j.json2topics()
