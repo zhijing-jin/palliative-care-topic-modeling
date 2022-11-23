@@ -28,6 +28,8 @@ class Constants:
     common_meaningless_words |= {'hospice', 'item', 'result', 'outcome', 'less', 'make', 'cope', 'measure', 'rate', 'male', 'female', 'examine', 'group', 'well', 'last', 'high', 'low'}
     common_meaningless_words |= {'set', 'material', 'provide', 'trial', 'time', 'control', 'base', 'level', 'research', 'test'}
     common_meaningless_words |= {'score', 'treatment', 'program', 'service', 'use', 'life', 'care', 'disorder', 'life', 'health', 'woman', 'use', 'program', 'report', 'gain', 'care', 'health', 'man', }
+    common_meaningless_words |= {'issue', 'receive', 'role', 'need', 'great', 'fact', 'rslp', 'similar', 'early',
+                                 'late', 'background', 'month', 'relate', 'related', 'correlate' }
 
     useless_pos_tags = {'CC', 'DT', 'IN', 'POS', 'PRP', 'PRP$', 'TO', } # https://www.ling.upenn.edu/courses/Fall_2003/ling001/penn_treebank_pos.html
     def __init__(self):
@@ -198,7 +200,7 @@ class PaperAnalyzer:
             corpus, num_topics=NUM_TOPICS, id2word=dictionary, passes=15)
         # (corpus=corpus, id2word=id2word, num_topics=20, random_state=100, update_every=1, chunksize=100, passes=10, alpha='auto', per_word_topics=True)
         # ldamodel.save('model5.gensim')
-        topics = ldamodel.print_topics(num_words=4)
+        topics = ldamodel.print_topics(num_words=10)
         doc_lda = ldamodel[corpus]
 
         topics = [i[-1] for i in topics]
