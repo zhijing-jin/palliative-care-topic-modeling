@@ -178,6 +178,6 @@ fabric.properties
 Icon*
 
 # ignore output files
-outputs/
+#outputs/
 
 
